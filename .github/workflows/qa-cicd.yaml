@@ -1,0 +1,31 @@
+name: Enterprise cicd pipeline
+on: 
+  push:
+    branches:
+      - qa
+    paths:
+      - client/**
+      - server/**
+      - .github/workflows/qa-cicd.yaml
+
+jobs:
+  gitleaks-scan:
+    name: gitleaks scan
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout source code
+        uses: actions/checkout@v6
+
+      - name: run gitleaks scan
+        run: |
+          docker run --rm \
+          -v "${{github.workspace}}:/repo" \
+          zricethezav/gitleaks:latest detect \
+          --source=/repo \
+          --report-format=json \
+          --report-path=/repo/gitleaks-report.json \
+          --redact \
+          --exit-code 0
+
+          
+          
