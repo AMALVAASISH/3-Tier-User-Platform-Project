@@ -455,7 +455,7 @@ jobs:
           if-no-files-found: warn
 
       - name: Generate source SBOM
-        uses: anchore/sbom-active@v0
+        uses: anchore/sbom-action@v0
         with:
           path: .
           format: spdx-json
