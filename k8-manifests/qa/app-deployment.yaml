@@ -17,7 +17,7 @@ spec:
       - name: regcred
       containers:
       - name: nodejs-app
-        image: amalvaasish/test-repo:699b360cd2cdcd5008252ecf1f39e2851db98223
+        image: amalvaasish/test-repo:dd9e7f2c5186377b80ec8d078c77724d6fc90c25
         ports:
         - containerPort: 5000
         env:
