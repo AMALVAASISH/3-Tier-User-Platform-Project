@@ -516,6 +516,11 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           ref: qa
+      - name: Inspect Raw OIDC Token Claims
+        run: |
+          RESP=$(curl -sS -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" "$ACTIONS_ID_TOKEN_REQUEST_URL&audience=sts.amazonaws.com")
+          TOKEN=$(echo "$RESP" | jq -r '.value')
+          echo "$TOKEN" | cut -d. -f2 | base64 -d 2>/dev/null | jq '{sub: .sub, aud: .aud, ref: .ref, event_name: .event_name}'
       - name: Configure aws credentials from github oidc
         uses: aws-actions/configure-aws-credentials@v4
         with:
