@@ -1,4 +1,4 @@
-name: Enterprise cicd pipeline
+name: Enterprise cicd pipeline 
 on: 
   push:
     branches:
