@@ -9,12 +9,22 @@ on:
         options:
           - stag
           - prod
-      
 
 jobs:
   Reminder:
     name: just a reminder
     runs-on: ubuntu-latest
-    
-      
-  
+    steps:
+      - name: Print chosen environment
+        run: |
+          echo "Selected Target Environment: ${{ inputs.environment }}"
+          echo "Triggered by: ${{ github.actor }}"
+
+      # Example: Conditional step based on choice
+      - name: Staging specific action
+        if: ${{ inputs.environment == 'stag' }}
+        run: echo "Running logic for STAGING..."
+
+      - name: Production specific action
+        if: ${{ inputs.environment == 'prod' }}
+        run: echo "Running logic for PRODUCTION..."
