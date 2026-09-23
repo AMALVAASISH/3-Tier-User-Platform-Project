@@ -1,0 +1,20 @@
+name: testing workflow dispatch
+
+on: 
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'target'
+        type: choice
+        options:
+          - stag
+          - prod
+      
+
+jobs:
+  Reminder:
+    name: just a reminder
+    runs-on: ubuntu-latest
+    
+      
+  
